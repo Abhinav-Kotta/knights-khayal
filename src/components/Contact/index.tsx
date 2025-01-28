@@ -138,7 +138,7 @@ const Contact = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center text-green-400"
               >
-                Thank you for your message! We'll get back to you soon.
+                Thank you for your message! We&aposll get back to you soon.
               </motion.div>
             )}
           </motion.form>
