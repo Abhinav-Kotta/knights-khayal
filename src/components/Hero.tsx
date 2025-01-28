@@ -1,82 +1,73 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Music } from 'lucide-react';
+import Image from 'next/image';
 
-const textVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-    },
-  },
-};
-
-const chevronVariants: Variants = {
-  animate: {
-    x: [0, 5, 0],
-    transition: {
-      repeat: Infinity,
-      duration: 1.5,
-    },
-  },
-};
-
-const Hero: React.FC = () => {
+const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20">
-      <div className="container mx-auto px-4 text-center">
-        <motion.h1
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-6xl md:text-7xl font-bold mb-6"
+    <section className="min-h-screen relative flex items-center justify-center overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/api/placeholder/1920/1080" // Replace with your actual group image
+          alt="Knights Khayal performing"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="hero-overlay" />
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto px-4 text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-8"
         >
-          Experience the Magic of{' '}
-          <span className="block text-purple-300">Indian Music</span>
+          <Music className="w-12 h-12 mx-auto mb-6 text-purple-300" />
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-6xl md:text-7xl font-bold mb-6 text-glow"
+        >
+          Knights Khayal
+          <span className="block text-purple-300 text-3xl md:text-4xl mt-4">
+            Where Dreams Take Flight Through Melody
+          </span>
         </motion.h1>
 
         <motion.p
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.2 }}
-          className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto glassmorphism p-6 rounded-lg"
         >
-          A fusion of classical Bollywood melodies with contemporary arrangements
+          Experience the magic of Bollywood and Indian classical music reimagined 
+          through our unique fusion performances and mesmerizing arrangements.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="space-x-4"
         >
-          <button
-            className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-full
-                     transition-transform hover:scale-105 inline-flex items-center
-                     group"
-          >
-            Upcoming Shows
-            <motion.span
-              variants={chevronVariants}
-              animate="animate"
-            >
-              <ChevronRight className="ml-2" />
-            </motion.span>
+          <button className="bg-purple-900/80 hover:bg-purple-800 px-8 py-3 rounded-full 
+                         transition-all hover:scale-105 inline-flex items-center
+                         glassmorphism border border-purple-400/30">
+            Watch Our Performances
           </button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="animate-bounce">
-            <ChevronRight className="rotate-90 w-8 h-8" />
-          </div>
+          <button className="bg-transparent px-8 py-3 rounded-full 
+                         transition-all hover:scale-105 inline-flex items-center
+                         border border-purple-400/30 hover:border-purple-400/50">
+            Book Us
+          </button>
         </motion.div>
       </div>
     </section>

@@ -9,10 +9,38 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Knights Khayal - Indian Music Group',
-  description: 'Experience the magic of Bollywood music with Knights Khayal',
-  keywords: ['music', 'bollywood', 'indian music', 'fusion', 'knights khayal'],
+  title: 'Knights Khayal - Where Imagination Meets Music',
+  description: 'Experience the dreamlike fusion of Indian music with Knights Khayal',
 };
+
+function StarryBackground() {
+  // Generate random stars
+  const stars = Array.from({ length: 50 }, (_, i) => ({
+    id: i,
+    size: Math.random() * 2 + 1,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    duration: Math.random() * 3 + 2
+  }));
+
+  return (
+    <div className="stars">
+      {stars.map(star => (
+        <div
+          key={star.id}
+          className="star"
+          style={{
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            left: `${star.left}%`,
+            top: `${star.top}%`,
+            '--duration': `${star.duration}s`
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function RootLayout({
   children,
@@ -21,8 +49,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.className} scroll-smooth`}>
-      <body className="min-h-screen bg-gradient-to-br from-purple-900 to-indigo-900 text-white">
-        <Providers>{children}</Providers>
+      <body>
+        <div className="starry-bg min-h-screen text-white relative">
+          <StarryBackground />
+          <Providers>{children}</Providers>
+        </div>
       </body>
     </html>
   );
