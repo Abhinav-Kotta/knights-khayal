@@ -22,3 +22,13 @@ export interface Member {
     email: string;
     message: string;
   }
+
+  export interface Video {
+    id: string;
+    title: string;
+    description: string;
+    driveUrl: string;
+    category: string;
+    date: string;
+    featured: boolean;
+  }
