@@ -30,7 +30,8 @@ export default function LoginPage() {
         toast.success('Logged in successfully');
       }
     } catch (error) {
-      toast.error('An error occurred during login');
+        console.error('Login error:', error);
+        toast.error('An error occurred during login');
     }
   };
 
