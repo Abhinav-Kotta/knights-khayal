@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Toaster } from 'sonner';
 
 export default function AdminVideosPage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   if (status === 'loading') {
     return (

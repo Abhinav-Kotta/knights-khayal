@@ -1,9 +1,13 @@
 import { PrismaClient } from '@prisma/client'
 
-declare global {
-  var prisma: PrismaClient | undefined
+interface CustomPrismaClient extends PrismaClient {
+  $use(arg: any): any
 }
 
-export const prisma = global.prisma || new PrismaClient()
+declare global {
+  var prisma: CustomPrismaClient | undefined
+}
+
+export const prisma = global.prisma || new PrismaClient() as CustomPrismaClient
 
 if (process.env.NODE_ENV !== 'production') global.prisma = prisma
